@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta author="asifzaman0362@gmail.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashif Zaman's portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="left" onmouseenter="hoverLeft()" onmouseleave="hoverEndLeft()">
+            <section id="trademark">
+                <div id="trademark-inner">
+                    <div id="title">zifmann<span>.tech</span></div>
+                    <div id="gitsource">view on <a href="https://github.com/asifZaman0362/asifZaman0362.github.io">GitHub</a></div>
+                </div>
+            </section>
+            <section id="bottom-left">
+                <h1>Introducing... <span>Jargon</span></h1>
+                <p>Currently, I’m working on an experimental programming language of my own as 
+                a side project primarily for the purpose of learning about compilers and systems in depth.
+                I have an online compiler and REPL for it on here so if you’re curious, check it out. 
+                </p>
+                <code data-splitting>
+                    <pre>
+<line><keyword>import </keyword><string>"std/console"</string>;</line>
+<br>
+<line><keyword>import </keyword><string>"std/math"</string>;</line>
+<br>
+<br>
+<line><decltype>struct </decltype>Vector2<op>: </op><type>type </type><op>= </op>{</line>                    
+<br>
+<line><indent></indent><decltype>field </decltype>x<op>: </op><type>real</type>;</line>
+<br>
+<line><indent></indent><decltype>field </decltype>y<op>: </op><type>real</type>;</line>
+<br>
+<line>};</line>
+<br>
+<br>
+<line><decltype>proc </decltype>Vector2<op>::</op>magnitude()<op>: </op><type>real() </type><op>= </op>math<op>::</op>sqrt(self<op>::</op>x <op>** </op><num>2</num><op> + </op>self<op>::</op>x <op>** </op><num>2</num>);</line>
+<br>
+<br>
+<line><decltype>proc </decltype>Vector2<op>::</op>normalized()<op>: </op><type>real() </type><op>= </op>{</line>
+<br>
+<line><indent></indent>self<op>::</op>x<op> /= </op> self<op>::</op>magnitude();</line>
+<br>
+<line><indent></indent>self<op>::</op>y<op> /= </op> self<op>::</op>magnitude();</line>
+<br>
+<line>};</line>
+<br>
+<br>
+<line><decltype>proc </decltype>main(<decltype>param </decltype>args<op>: </op><type>string</type><op>[</op><num>_</num><op>]</op>)<op>: </op><type>int()</type><op> = </op> {</line>
+<br>
+<line><indent></indent><decltype>var </decltype>position<op>: </op><type>Vector2</type><op> = </op>{ <num>10.5</num>, <num>43.2</num> };</line>
+<br>
+<line><indent></indent>console<op>::</op>print(position<op>::</op>magnitude());</line>
+<br>
+<line><indent></indent>console<op>::</op>print(position<op>::</op>normalized());</line>
+<br>
+<line><indent></indent><keyword>return </keyword><num>0</num>;</line>
+<br>
+<line>};</line>
+<br>
+                    </pre>
+                </code>
+            </section>
+        </div>
+        <div id="right" onmouseenter="hoverRight()" onmouseleave="hoverEndRight()">
+            <div id="top-right">
+                <section id="about">
+                    <h1>Hi!</h1>
+                    <h1>I'm <span>Ashif</span></h1>
+                    <br>
+                    <p>I make games, websites, parsers and other software.</p>
+                    <p>I also provide design consultancy for small scale projects.</p>
+                </section>
+                <section id="links">
+                    <ul>
+                        <li><a href="https://zifmann.tech/blog" data-splitting>blog</a></li>
+                        <li><a href="https://zifmann.tech/games" data-splitting>games</a></li>
+                        <li><a href="https://zifmann.tech/projects" data-splitting>projects</a></li>
+                        <li><a href="https://zifmann.tech/github" data-splitting>github</a></li>
+                        <li><a href="https://zifmann.tech/youtube" data-splitting>youtube</a></li>
+                    </ul>            
+                </section>
+            </div>
+            <section id="bottom-right">
+                <h1 id="post-title">Featured Post</h1>
+                <p>The original text in this article was a bit too complicated 
+                    and uninteresting to be catchy enough to go on the homepage 
+                    so I have resorted to using this unrelated bit of text as a placeholder.</p>
+                <a href="https://zifmann.tech/featured" class="read-more-link">Read more -></a>
+            </section>
+        </div>
+    </div>
+    <script type="text/javascript">
+        Splitting();
+        function hoverRight() {
+            document.querySelector("#left").style.width = "40%";
+            document.querySelector("#right").style.width = "60%";
+        }
+        function hoverEndRight() {
+            document.querySelector("#left").style.width = "50%";
+            document.querySelector("#right").style.width = "50%";
+        }
+        function hoverLeft() {
+            document.querySelector("#left").style.width = "60%";
+            document.querySelector("#right").style.width = "40%";
+        }
+        function hoverEndLeft() {
+            document.querySelector("#left").style.width = "50%";
+            document.querySelector("#right").style.width = "50%";
+        }
+        generateCodeDom();
+    </script>
+</body>
+</html>
