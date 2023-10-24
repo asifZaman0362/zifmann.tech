@@ -120,6 +120,7 @@ async fn main() -> std::io::Result<()> {
             .service(search_blog)
             .service(
                 fs::Files::new("/", "./static/")
+                    .use_hidden_files()
                     .index_file("index.html")
                     .default_handler(fn_service(|req: ServiceRequest| async {
                         let (req, _) = req.into_parts();
