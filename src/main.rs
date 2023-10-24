@@ -1,8 +1,10 @@
+use actix::{Actor, StreamHandler};
 use actix_files as fs;
 use actix_web::dev::{fn_service, ServiceRequest, ServiceResponse};
 use actix_web::http::StatusCode;
 use actix_web::middleware::Logger;
-use actix_web::{get, App, HttpResponseBuilder, HttpServer, Responder};
+use actix_web::{get, App, HttpResponseBuilder, HttpServer, Responder, HttpRequest, HttpResponse, web::Payload};
+use actix_web_actors::ws::{self, WebsocketContext, Message, ProtocolError};
 use env_logger::Env;
 use fs::NamedFile;
 use regex::{Regex, RegexBuilder};
@@ -11,9 +13,30 @@ use std::collections::HashSet;
 use std::io::{BufRead, BufReader, Read};
 use std::process::{Command, Stdio};
 
+struct WsSession {}
+
+impl Actor for WsSession {
+    type Context = WebsocketContext<Self>;
+}
+
+impl StreamHandler<Result<Message, ProtocolError>> for WsSession {
+    fn handle(&mut self, item: Result<Message, ProtocolError>, ctx: &mut Self::Context) {
+        match item {
+            Ok(Message::Ping(bytes)) => ctx.pong(&bytes),
+            Ok(_) => {}
+            Err(err) => panic!("{err}")
+        }
+    }
+}
+
 #[derive(Deserialize)]
 struct SearchQuery {
     term: String,
+}
+
+#[get("/ws/")]
+async fn websocket(req: HttpRequest, payload: Payload) -> actix_web::Result<HttpResponse> {
+    ws::start(WsSession{}, &req, payload)
 }
 
 fn search_html_files(
