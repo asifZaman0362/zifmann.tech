@@ -141,6 +141,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::default())
             .wrap(Logger::new("%a %{User-Agent}i"))
             .service(search_blog)
+            .service(websocket)
             .service(
                 fs::Files::new("/", "./static/")
                     .use_hidden_files()
