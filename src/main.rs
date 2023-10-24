@@ -17,6 +17,9 @@ struct WsSession {}
 
 impl Actor for WsSession {
     type Context = WebsocketContext<Self>;
+    fn started(&mut self, ctx: &mut Self::Context) {
+        log::info!("socket connected!");
+    }
 }
 
 impl StreamHandler<Result<Message, ProtocolError>> for WsSession {
