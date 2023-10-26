@@ -1,3 +1,12 @@
+let theme = localStorage.getItem("theme") ?? "light";
+document.body.classList.add(theme);
+
+function toggleTheme() {
+  let newTheme = theme == "light" ? "dark" : "light";
+  document.body.classList.replace(theme, newTheme);
+  theme = newTheme;
+  localStorage.setItem("theme", theme);
+}
 
 function gen_outline_tree(parent, node) {
   let wrapper = document.createElement('li');

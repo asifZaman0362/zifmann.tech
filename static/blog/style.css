@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
     --col-ac: darkgreen;
     --col-ac-light: #9EBDA1;
@@ -232,6 +234,25 @@ code {
     border: 1px solid #d5d5d5;
     border-radius: 5px;
     padding: 2px 5px;
+    font-family: "Jetbrains Mono", "menlo", "Ubuntu Mono", "Hack", "Fira Code", monospace;
+}
+
+pre {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #282828;
+}
+
+pre code {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.light pre {
+    filter: invert(1) hue-rotate(180deg) saturate(1.6);
+    background: #090909 !important;
 }
 
 em strong, strong em {
