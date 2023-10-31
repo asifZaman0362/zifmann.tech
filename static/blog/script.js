@@ -1,5 +1,6 @@
 let theme = localStorage.getItem("theme") ?? "light";
-document.body.classList.add(theme);
+document.body.className = theme;
+document.querySelector("#theme-toggle").setAttribute("checked", theme == "dark");
 
 function toggleTheme() {
   let newTheme = theme == "light" ? "dark" : "light";

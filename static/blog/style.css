@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
+    --col-bg: white;
+    --col-bg-sec: lightgray;
+    --col-fg: #1d2021;
     --col-ac: darkgreen;
     --col-ac-light: #9EBDA1;
     --col-bg-heading: #EfEfEf;
@@ -11,12 +14,40 @@
     --col-term: #37996A;
     --col-border: lightgray;
     --col-hi: #dada92;
+    --col-em: #303030;
+    --bg-tag: #37996A;
+    --fg-tag: white;
+    --col-link: #3E88CC;
+    --col-fg-sec: #282828;
+    --col-fg-ter: #383838;
+}
+
+.dark {
+    --col-bg: #222222;
+    --col-bg-sec: #282828;
+    --col-fg: #efefef;
+    --col-ac: lightgreen;
+    --col-ac-light: #9EBDA1;
+    --col-bg-heading: #EfEfEf;
+    --col-overview-bg: #232323;
+    --col-appendix-bg: #282828;
+    --col-appendix-term-border: #FFC6C6;
+    --col-term: #37996A;
+    --col-border: #303030;
+    --col-hi: #dada92;
+    --col-em: #dadada;
+    --bg-tag: #37996A;
+    --fg-tag: white;
+    --col-link: #72C2EF;
+    --col-fg-sec: #dadada;
+    --col-fg-ter: #cacaca;
 }
 
 body, html {
     padding: 0;
     margin: 0;
     height: 100vh;
+    color: var(--col-fg);
 }
 
 body {
@@ -27,25 +58,26 @@ body {
 }
 
 header {
-    padding: 20px 50px;
+    padding: 20px calc(20px + var(--padding-horizontal));
     box-shadow: 0px 4px 11px -2px rgba(0, 0, 0, 0.25);
-    position: sticky;
-    background: white;
-    top: 0;
+    background: var(--col-bg);
     z-index: 100;
+    display: flex;
+    flex-direction: row;
 }
 
 #logo {
     font-weight: bold;
     font-size: x-large;
     font-style: italic;
+    flex-grow: 1;
 }
 
 #logo span::before {
     content: "::";
 }
 
-#logo span {
+#logo span a {
     color: var(--col-ac);
     font-weight: normal;
 }
@@ -68,14 +100,14 @@ header {
 
 article#post {
     padding: 30px calc(var(--padding-horizontal) + 20px);
-    border-right: 1px solid lightgray;
-    border-left: 1px solid lightgray;
+    border-right: 1px solid var(--col-border);
+    border-left: 1px solid var(--col-border);
     position: relative;
-    background: white;
+    background: var(--col-bg);
 }
 
 article i {
-    color: gray;
+    color: var(--col-em);
 }
 
 article p {
@@ -111,9 +143,9 @@ article h4 {
 tag {
     padding: 5px 10px;
     border-radius: 20px;
-    background: #37996A;
+    background: var(--bg-tag);
     font-family: "IBM Plex Sans";
-    color: white;
+    color: var(--fg-tag);
     font-weight: 500;
     font-size: 12px;
 }
@@ -183,15 +215,15 @@ p {
 
 #overview ul h1 {
     font-weight: 500;
-    color: black;
+    color: var(--col-fg);
 }
 
 #overview ul h2 {
-    color: #545454;
+    color: var(--col-fg-sec);
 }
 
 #overview ul h3 {
-    color: #747474;
+    color: var(--col-fg-ter);
 }
 
 #overview ul {
@@ -206,7 +238,7 @@ p {
 }
 
 #overview ul li {
-    border-left: 2px solid #ddd;
+    border-left: 2px solid var(--col-tree-border);
 }
 
 #overview ul li::before{
@@ -230,14 +262,15 @@ p {
 }
 
 code {
-    background: #e5e5e5;
-    border: 1px solid #d5d5d5;
+    background: var(--bg-code);
+    border: 1px solid var(--border-code);
     border-radius: 5px;
     padding: 2px 5px;
     font-family: "Jetbrains Mono", "menlo", "Ubuntu Mono", "Hack", "Fira Code", monospace;
 }
 
 pre {
+    overflow: auto;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #282828;
@@ -269,7 +302,7 @@ em strong, strong em {
     display: flex;
     padding: 20px 0px 20px 30px;
     overflow: auto;
-    background: #FAF8F6;
+    background: var(--col-bg);
     flex-grow: 1;
 }
 
@@ -384,7 +417,7 @@ em strong, strong em {
 
 #search-results {
     position: absolute;
-    background: white;
+    background: var(--col-bg);
     font-size: 80%;
     margin-top: 10px;
     width: 200%;
@@ -433,9 +466,9 @@ em strong, strong em {
 #searchbar input {
     font-size: large;
     padding: 5px;
-    border: 1px solid gray;
+    border: 1px solid var(--col-border);
     font-family: 'IBM Plex Sans';
-    background: white;
+    background: var(--col-bg);
 }
 
 #timeline {
@@ -513,4 +546,101 @@ em strong, strong em {
 
 .highlight {
     background: var(--col-hi);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 2px solid var(--col-fg);
+}
+
+.light .slider {
+  background: transparent;
+}
+
+.dark .slider {
+  background: transparent;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 4px;
+  bottom: 4px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  text-align: center;
+  line-height: 24px;
+  font-size: 24px;
+}
+
+.light .slider:before {
+  background-color: transparent;
+  color: var(--col-fg);
+  content: "brightness_high";
+  line-height: 23px;
+  height: 23px;
+  font-size: 23px;
+}
+
+.slider:before {
+  background-color: transparent;
+  color: var(--col-fg);
+  content: "nights_stay";
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+a {
+    color: var(--col-link);
+}
+
+@media screen and (max-width: 720px) {
+    :root {
+        --padding-horizontal: 0px;
+    }
+    #overview {
+        display: none;
+        left: 0;
+    }
+    #post-container {
+        width: 100%;
+        padding: 0;
+    }
 }
