@@ -74,6 +74,8 @@ header {
   align-items: center;
 }
 
+/* BLOG POST */
+
 #toggle-sidebar {
   text-decoration: none;
   font-size: 24px;
@@ -314,3 +316,259 @@ h6 {
   transition: color 0.25s ease-in-out, background 0.25s ease-in-out,
     border-color 0.25s ease-in-out, filter 0.25s ease-in-out;
 }
+
+/* END BLOG POST */
+
+/* INDEX */
+
+#homepage {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  flex: 1;
+  background: var(--col-bg-sec);
+  overflow-y: auto;
+}
+
+#featured {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding: var(--padding-vertical);
+}
+
+.row {
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  margin-top: var(--padding-vertical);
+  display: flex;
+  flex-direction: row;
+}
+
+#featured-label {
+  font-size: 48px;
+  flex: 1;
+  margin: 0;
+}
+
+#featured article:last-child {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+#searchbar {
+  position: relative;
+}
+
+#search-results {
+  position: absolute;
+  background: var(--col-bg);
+  font-size: 80%;
+  margin-top: 10px;
+  width: 200%;
+  right: 0;
+  max-height: 65vh;
+  overflow: scroll;
+  display: none;
+  z-index: 99;
+}
+
+#search-results article h1 {
+  font-size: 24px;
+}
+
+#searchbar input:focus + #search-results {
+  display: block;
+}
+
+#search-results ul {
+  box-shadow: 1px 1px 5px 0 gray;
+  border: 1px solid var(--col-border);
+}
+
+#search-results a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+#search-results article {
+  padding: 20px;
+}
+
+#search-results article:hover {
+  background: #f5f5f5;
+}
+
+#search-results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#search-results li:not(:last-child) {
+  border-bottom: 1px solid var(--col-border);
+}
+
+#search-results h1,
+h2,
+h3,
+h4,
+p {
+  margin: 10px 0;
+}
+
+#searchbar input {
+  font-size: large;
+  padding: 5px;
+  border: 1px solid var(--col-border);
+  font-family: "IBM Plex Sans";
+  background: var(--col-bg);
+}
+
+#featured article {
+  padding: var(--padding-vertical)
+    calc(var(--padding-horizontal) - var(--padding-vertical));
+  background: var(--col-bg);
+  border: 1px solid var(--col-border);
+}
+
+#featured article h1 {
+  font-size: x-large;
+}
+
+#featured article h1 a {
+  color: var(--col-fg);
+  text-decoration: none;
+}
+
+#timeline {
+  background: var(--col-bg);
+  border-left: 1px solid var(--col-border);
+  padding: var(--padding-vertical);
+  overflow-y: scroll;
+}
+
+#timeline ul {
+  list-style: none;
+}
+
+#timeline ul ul ul {
+  padding-bottom: var(--padding-vertical);
+}
+
+#timeline ul li {
+  display: flex;
+}
+
+#timeline ul ul li::before {
+  content: "";
+  border-left: 2px solid var(--col-border);
+  border-bottom: 2px solid var(--col-border);
+  width: var(--padding-vertical);
+  height: var(--padding-vertical);
+  display: block;
+  margin-left: calc(var(--padding-vertical) * -1);
+  margin-top: calc(1em * -0.5);
+}
+
+#timeline h1 + ul {
+  margin: 0;
+  padding: 0;
+  padding-left: var(--padding-vertical);
+  list-style: none;
+}
+
+#timeline ul {
+  padding-left: var(--padding-vertical);
+  margin-top: calc(var(--padding-vertical) * -1);
+  margin-left: calc(var(--padding-vertical) * 0.5);
+  padding-top: var(--padding-vertical);
+}
+
+#timeline ul h2,
+#timeline ul h3,
+#timeline ul h4 {
+  display: inline;
+}
+
+#timeline ul ul ul {
+  list-style: disc;
+}
+
+#timeline ul ul ul {
+  list-style-position: inside;
+}
+
+#timeline ul ul ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#timeline ul ul ul li::before {
+  display: inline-block;
+  width: var(--padding-vertical);
+  margin-left: calc(var(--padding-vertical) * -1);
+  margin-right: 5px;
+  content: "";
+  border-bottom: 2px solid var(--col-border);
+}
+
+#timeline summary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#timeline ul summary h2,
+#timeline ul summary h3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+}
+
+#timeline h4 {
+  margin: 0;
+}
+
+#timeline ul summary h2::before,
+#timeline ul summary h3::before {
+  z-index: 9;
+  content: "+";
+  background: var(--col-time);
+  border-radius: 10px;
+  line-height: var(--padding-vertical);
+  display: inline-block;
+  width: var(--padding-vertical);
+  margin-right: 5px;
+  color: var(--col-bg);
+  text-align: center;
+  font-size: var(--padding-vertical);
+}
+
+#timeline details[open] summary h2::before,
+#timeline ul ul details[open] summary h3::before {
+  content: "-";
+}
+
+#timeline ul li:not(:last-child) details {
+  border-left: 2px solid var(--col-border);
+  margin-left: calc(var(--padding-vertical) * -1 - 2px);
+  padding-left: var(--padding-vertical);
+}
+
+#timeline > ul > li:last-child > details {
+  margin-left: -2px;
+}
+
+#timeline > ul > li {
+  margin-top: calc(var(--padding-vertical) * -0.5);
+}
+
+#timeline > ul > li > details {
+  border: none !important;
+}
+
+/* END INDEX */
