@@ -1,18 +1,29 @@
-let theme = localStorage.getItem("theme") ?? "light";
-document.body.className = theme;
-document.querySelector("#theme-toggle").setAttribute("checked", theme == "dark");
-
 function toggleTheme() {
+  var theme = localStorage.getItem("theme") ?? "light";
+  console.log(theme);
   let newTheme = theme == "light" ? "dark" : "light";
   document.body.classList.replace(theme, newTheme);
   theme = newTheme;
   localStorage.setItem("theme", theme);
 }
 
+function toggleSidebar() {
+  let overview = document.querySelector("#overview");
+  let button = document.querySelector("#toggle-sidebar");
+  if (!overview.classList.contains('hidden')) {
+    overview.classList.add('hidden');
+    button.innerHTML = "menu";
+  } else {
+    overview.classList.remove('hidden');
+    button.innerHTML = "close";
+  }
+}
+
 function gen_outline_tree(parent, node) {
   let wrapper = document.createElement('li');
   let anchor = document.createElement('a');
   anchor.href = `#${node.link}`;
+  anchor.onclick = () => toggleSidebar();
   let newNode = document.createElement(`H${node.level}`);
   anchor.appendChild(newNode);
   wrapper.appendChild(anchor);
@@ -73,4 +84,9 @@ function create_outline() {
   return p;
 }
 
-console.debug(create_outline());
+window.onload = () => {
+  console.debug(create_outline());
+  var theme = localStorage.getItem("theme") ?? "light";
+  document.body.className = theme;
+  document.querySelector("#theme-toggle").setAttribute("checked", theme == "dark");
+}
