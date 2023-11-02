@@ -9,6 +9,7 @@ function toggleTheme() {
 
 function toggleSidebar() {
   let overview = document.querySelector("#overview");
+  if (!overview) overview = document.querySelector("#timeline");
   let button = document.querySelector("#toggle-sidebar");
   if (!overview.classList.contains('hidden')) {
     overview.classList.add('hidden');

@@ -8,12 +8,42 @@
   <link rel="stylesheet" href="/blog/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;0,7..72,800;0,7..72,900;1,7..72,200;1,7..72,300;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700;1,7..72,800;1,7..72,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div id="logo">zifmann.tech<span><a>blog</a></span></div>
-  </header>
+    <header>
+      <a
+        href="javascript:void(0)"
+        onclick="toggleSidebar()"
+        id="toggle-sidebar"
+        class="material-symbols-outlined"
+        >menu</a
+      >
+      <div id="logo">
+        zifmann.tech<span><a>blog</a></span>
+      </div>
+      <div id="theme-toggle">
+        <label class="switch">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onclick="toggleTheme()"
+          >
+            <path
+              d="M27.3174 20.6826L32 16L27.3174 11.3174V4.68258H20.6826L16 0L11.3174 4.68258H4.68258V11.3174L0 16L4.68258 20.6826V27.3174H11.3174L16 32L20.6826 27.3174H27.3174V20.6826ZM16 24.4881V7.51194C20.6826 7.51194 24.4881 11.3174 24.4881 16C24.4881 20.6826 20.6826 24.4881 16 24.4881Z"
+              fill="#1D2021"
+            />
+          </svg>
+        </label>
+      </div>
+    </header>
   <div id="homepage">
     <div id="featured-container">
       <div class="row">
@@ -52,6 +82,7 @@
             fascinating world of AI, its applications, and the profound impact
             it's having on our world.
           </p></article></a></section>
+          <a href="javascript:void(0)" onclick="toggleSidebar()" id="show-more">Show more</a>
     </div>
     <aside id="timeline">
       <h1>Timeline</h1>
@@ -61,12 +92,12 @@
           <ul>
             <li><details open><summary>
               <h3>October</h3></summary><ul>
-                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">simple_blog_using_markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">iot_stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">dummy_blog_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">another_dummy_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
+                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">Simple Blog using markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">Iot Stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">Dummy blog post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">Another dummy post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
               </ul>
             </details></li>
             <li><details open><summary>
               <h3>September</h3></summary><ul>
-                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">simple_blog_using_markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">iot_stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">dummy_blog_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">another_dummy_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
+                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">Simple Blog using markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">Iot Stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">Dummy blog post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">Another dummy post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
               </ul>
             </details></li>
           </ul>
@@ -76,12 +107,12 @@
           <ul>
             <li><details open><summary>
               <h3>October</h3></summary><ul>
-                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">simple_blog_using_markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">iot_stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">dummy_blog_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">another_dummy_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
+                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">Simple Blog using markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">Iot Stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">Dummy blog post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">Another dummy post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
               </ul>
             </details></li>
             <li><details open><summary>
               <h3>September</h3></summary><ul>
-                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">simple_blog_using_markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">iot_stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">dummy_blog_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">another_dummy_post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
+                <li><h4><a href="/blog/posts/2023/Oct/simple_blog_using_markdown.html">Simple Blog using markdown</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/iot_stuff.html">Iot Stuff</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/dummy_blog_post.html">Dummy blog post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_post.html">Another dummy post</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/another_dummy_.html">another_dummy_</a></h4></li><li><h4><a href="/blog/posts/2023/Oct/ai_stuff.html">ai_stuff</a></h4></li>
               </ul>
             </details></li>
           </ul>
@@ -90,5 +121,6 @@
       </ul>
     </aside>
   </div>
+  <script src="/blog/script.js"></script>
 </body>
 </html>
