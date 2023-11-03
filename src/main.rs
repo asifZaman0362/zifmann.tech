@@ -151,8 +151,10 @@ async fn main() -> std::io::Result<()> {
                     .index_file("index.html")
                     .default_handler(fn_service(|req: ServiceRequest| async {
                         let (req, _) = req.into_parts();
-                        let file = NamedFile::open_async("./static/404.html").await?;
-                        let res = file.into_response(&req);
+                        let mut file = NamedFile::open_async("./static/404.html").await?;
+                        let mut buf = String::new();
+                        file.read_to_string(&mut buf)?;
+                        let res = HttpResponse::NotFound().body(buf);
                         Ok(ServiceResponse::new(req, res))
                     })),
             )
