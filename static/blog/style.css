@@ -517,6 +517,7 @@ li:not(:last-child) li:first-child::before {
   content: "";
   display: block;
   position: absolute;
+  top: calc(1em + var(--border-width));
 }
 
 li:last-child summary {
@@ -545,6 +546,8 @@ summary span {
 summary span::before {
   display: block;
   content: "+";
+  line-height: 0.85em;
+  font-weight: bold;
   width: 1em;
   height: 1em;
   background: var(--col-fg);
