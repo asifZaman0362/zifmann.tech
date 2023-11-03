@@ -42,6 +42,9 @@ function gen_outline_tree(parent, node) {
 
 function create_outline() {
   let article = document.querySelector("article");
+  if (article == null) {
+    return;
+  }
   let p = { text: null, children: [], parent: null, level: 0, link: null };
   let latest = p;
   for (let child of article.children) {
@@ -86,7 +89,7 @@ function create_outline() {
 }
 
 window.onload = () => {
-  console.debug(create_outline());
+  create_outline()
   var theme = localStorage.getItem("theme") ?? "light";
   document.body.className = theme;
   document.querySelector("#theme-toggle").setAttribute("checked", theme == "dark");

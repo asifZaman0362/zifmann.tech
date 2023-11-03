@@ -3,6 +3,9 @@
 :root {
   --padding-horizontal: 50px;
   --padding-vertical: 20px;
+  --padding-li: 10px;
+  --padding: 20px;
+  --border-width: 2px;
 
   /* Colors */
   --col-bg: #f9f9f9;
@@ -74,24 +77,17 @@ header {
   align-items: center;
 }
 
-/* BLOG POST */
-
-#toggle-sidebar {
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--col-fg);
-  margin-right: 10px;
-  line-height: 24px;
-  display: none;
-}
-
 header #logo {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: bold;
   font-style: italic;
   font-size: 16px;
   flex: 1;
+}
+
+header #logo a {
+  text-decoration: none;
+  color: var(--col-fg);
 }
 
 header #logo span {
@@ -104,6 +100,18 @@ header #logo span a {
 
 header #logo span::before {
   content: "::";
+}
+
+/* BLOG POST */
+
+#toggle-sidebar {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--col-fg);
+  margin-right: 10px;
+  line-height: 24px;
+  display: none;
 }
 
 .content {
@@ -232,14 +240,16 @@ b em {
   padding: 0 0 0 15px;
 }
 
-#overview h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 5px 0;
-  color: var(--col-fg-sec);
-  display: inline-block;
+#overview {
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    margin: 5px 0;
+    color: var(--col-fg-sec);
+    display: inline-block;
+  }
 }
 
 #overview h1 {
@@ -437,10 +447,10 @@ h6 {
 }
 
 #search-results h1,
-h2,
-h3,
-h4,
-p {
+#search-results h2,
+#search-results h3,
+#search-results h4,
+#search-results p {
   margin: 10px 0;
 }
 
@@ -473,132 +483,118 @@ p {
   border-left: 1px solid var(--col-border);
   padding: var(--padding-vertical);
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-#timeline ul {
-  list-style: none;
-}
-
-#timeline ul ul ul {
-  padding-bottom: var(--padding-vertical);
-}
-
-#timeline ul li {
-  display: flex;
-}
-
-#timeline ul ul li::before {
-  content: "";
-  border-left: 2px solid var(--col-border);
-  border-bottom: 2px solid var(--col-border);
-  width: var(--padding-vertical);
-  height: var(--padding-vertical);
-  display: block;
-  margin-left: calc(var(--padding-vertical) * -1);
-  margin-top: calc(1em * -0.5);
-}
-
-#timeline h1 + ul {
-  margin: 0;
-  padding: 0;
-  padding-left: var(--padding-vertical);
-  list-style: none;
-}
-
-#timeline ul {
-  padding-left: var(--padding-vertical);
-  margin-top: calc(var(--padding-vertical) * -1);
-  margin-left: calc(var(--padding-vertical) * 0.5);
-  padding-top: var(--padding-vertical);
-}
-
-#timeline ul h2,
-#timeline ul h3,
-#timeline ul h4 {
-  display: inline;
-}
-
-#timeline ul ul ul {
+ul {
+  padding-left: var(--padding);
   list-style: disc;
 }
 
-#timeline ul ul ul {
-  list-style-position: inside;
+li {
+  position: relative;
+  line-height: 1em;
+  padding: var(--padding-li) 0;
 }
 
-#timeline ul ul ul li {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-#timeline ul ul ul li::before {
-  display: inline-block;
-  width: var(--padding-vertical);
-  margin-left: calc(var(--padding-vertical) * -1);
-  margin-right: 5px;
+li:not(:last-child)::before {
   content: "";
-  border-bottom: 2px solid var(--col-border);
+  position: absolute;
+  float: left;
+  top: calc(0.5em + var(--padding-li));
+  bottom: calc(-0.5em - var(--padding-li));
+  border-left: var(--border-width) solid var(--col-border);
+  left: calc(var(--padding) * -0.5 - var(--border-width));
 }
 
-#timeline summary {
+li:not(:last-child) li:first-child::before {
+  width: calc(var(--padding) - var(--border-width));
+  margin-left: calc(var(--padding) * -0.5 - var(--border-width));
+  border-top: var(--border-width) solid var(--col-border);
+  border-right: var(--border-width) solid var(--col-border);
+  border-left-color: transparent;
+  left: calc(var(--padding) * -1);
+  content: "";
+  display: block;
+  position: absolute;
+}
+
+li:last-child summary {
+  position: relative;
+}
+
+li:last-child > details[open] > summary::before {
+  content: "";
+  position: absolute;
+  border-left: var(--border-width) solid var(--col-border);
+  border-bottom: var(--border-width) solid var(--col-border);
+  top: 0.5em;
+  bottom: calc(-0.5em - var(--border-width) - var(--padding-li));
+  margin-left: calc(var(--padding) * -0.5 - var(--border-width));
+  width: var(--padding);
+}
+
+summary::marker {
+  content: "";
+}
+
+summary span {
   display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 
-#timeline ul summary h2,
-#timeline ul summary h3 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0;
-}
-
-#timeline h4 {
-  margin: 0;
-}
-
-#timeline ul summary h2::before,
-#timeline ul summary h3::before {
-  z-index: 9;
+summary span::before {
+  display: block;
   content: "+";
-  background: var(--col-time);
-  border-radius: 10px;
-  line-height: var(--padding-vertical);
-  display: inline-block;
-  width: var(--padding-vertical);
-  margin-right: 5px;
+  width: 1em;
+  height: 1em;
+  background: var(--col-fg);
   color: var(--col-bg);
   text-align: center;
-  font-size: var(--padding-vertical);
+  border-radius: 1em;
+  margin-left: calc(var(--padding) * -1);
+  margin-right: 5px;
+  z-index: 2;
 }
 
-#timeline details[open] summary h2::before,
-#timeline ul ul details[open] summary h3::before {
+details[open] > summary > span::before {
   content: "-";
 }
 
-#timeline ul li:not(:last-child) details {
-  border-left: 2px solid var(--col-border);
-  margin-left: calc(var(--padding-vertical) * -1 - 2px);
-  padding-left: var(--padding-vertical);
+summary span h2,
+summary span h3 {
+  flex: 1;
+  display: inline-block;
+  margin: 0;
 }
 
-#timeline > ul > li:last-child > details {
-  margin-left: -2px;
+li:not(:last-child) li:last-child > details > ul > li:last-child::before {
+  border-left: 0;
+  width: 0 !important;
+  margin-left: calc(var(--padding) / 2 - var(--border-width)) !important;
 }
 
-#timeline > ul > li {
-  margin-top: calc(var(--padding-vertical) * -0.5);
+li::before {
+  z-index: -1;
 }
 
-#timeline > ul > li > details {
-  border: none !important;
+#timeline {
+  z-index: 9999;
 }
 
 #show-more {
   display: none;
+}
+
+#timeline h2,
+#timeline h3,
+#timeline h4 {
+  margin: 0;
+  display: inline;
+  color: var(--col-fg);
+}
+
+#timeline a {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 1500px) {
@@ -630,11 +626,11 @@ p {
     position: absolute;
     box-sizing: border-box;
     height: 100%;
-    z-index: 9999;
     border-right: 1px solid var(--col-border);
     max-width: 100%;
     transition: margin-left 0.25s ease-in-out;
   }
+
   #timeline.hidden {
     margin-left: -100%;
   }
