@@ -486,18 +486,18 @@ b em {
   overflow-x: hidden;
 }
 
-ul {
+#timeline ul {
   padding-left: var(--padding);
   list-style: disc;
 }
 
-li {
+#timeline li {
   position: relative;
   line-height: 1em;
   padding: var(--padding-li) 0;
 }
 
-li:not(:last-child)::before {
+#timeline li:not(:last-child)::before {
   content: "";
   position: absolute;
   float: left;
@@ -507,7 +507,7 @@ li:not(:last-child)::before {
   left: calc(var(--padding) * -0.5 - var(--border-width));
 }
 
-li:not(:last-child) li:first-child::before {
+#timeline li:not(:last-child) li:first-child::before {
   width: calc(var(--padding) - var(--border-width));
   margin-left: calc(var(--padding) * -0.5 - var(--border-width));
   border-top: var(--border-width) solid var(--col-border);
@@ -520,11 +520,11 @@ li:not(:last-child) li:first-child::before {
   top: calc(1em + var(--border-width));
 }
 
-li:last-child summary {
+#timeline li:last-child summary {
   position: relative;
 }
 
-li:last-child > details[open] > summary::before {
+#timeline li:last-child > details[open] > summary::before {
   content: "";
   position: absolute;
   border-left: var(--border-width) solid var(--col-border);
@@ -535,15 +535,15 @@ li:last-child > details[open] > summary::before {
   width: var(--padding);
 }
 
-summary::marker {
+#timeline summary::marker {
   content: "";
 }
 
-summary span {
+#timeline summary span {
   display: flex;
 }
 
-summary span::before {
+#timeline summary span::before {
   display: block;
   content: "+";
   line-height: 0.85em;
@@ -559,24 +559,29 @@ summary span::before {
   z-index: 2;
 }
 
-details[open] > summary > span::before {
+#timeline details[open] > summary > span::before {
   content: "-";
 }
 
-summary span h2,
-summary span h3 {
+#timeline summary span h2,
+#timeline summary span h3 {
   flex: 1;
   display: inline-block;
   margin: 0;
 }
 
-li:not(:last-child) li:last-child > details > ul > li:last-child::before {
+#timeline
+  li:not(:last-child)
+  li:last-child
+  > details
+  > ul
+  > li:last-child::before {
   border-left: 0;
   width: 0 !important;
   margin-left: calc(var(--padding) / 2 - var(--border-width)) !important;
 }
 
-li::before {
+#timeline li::before {
   z-index: -1;
 }
 

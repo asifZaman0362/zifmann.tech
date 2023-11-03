@@ -81,7 +81,7 @@ p {
 }
 
 #trademark #title {
-  font-size: 72px;
+  font-size: 6vw;
   font-family: "IBM Plex Sans";
   font-weight: 700;
   text-decoration: underline;
@@ -110,7 +110,7 @@ p {
   height: 70%;
 }
 
-#links {
+.links {
   background-color: var(--col-bg);
   width: 50%;
   display: flex;
@@ -124,7 +124,7 @@ section:hover {
   filter: invert(100%);
 }
 
-#links ul {
+.links ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -195,7 +195,7 @@ section h1 {
   -webkit-text-stroke-color: black;
 }
 
-#links ul li a .char {
+.links ul li a .char {
   display: inline-block;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--col-fg);
@@ -209,13 +209,13 @@ section h1 {
   transition-delay: var(--delay);
 }
 
-#links ul li a:hover .char {
+.links ul li a:hover .char {
   --delay: calc((var(--char-index)) * 100ms);
   color: var(--col-bg);
   font-variation-settings: "wght" 700, "wdth" 100;
 }
 
-#links ul li a:hover {
+.links ul li a:hover {
   border-bottom: 2px solid black;
 }
 
@@ -283,4 +283,61 @@ code .char {
   visibility: visible;
   --delay: calc((var(--char-index)) * 30ms);
   transition-delay: var(--delay);
+}
+
+#links {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  code {
+    overflow: scroll;
+  }
+  #trademark {
+    height: auto !important;
+  }
+  body {
+    height: auto;
+    width: auto;
+  }
+  #trademark #title {
+    font-size: 42px;
+  }
+  #main {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  #left {
+    overflow: hidden;
+    width: auto !important;
+    height: auto !important;
+    position: relative;
+  }
+  #right {
+    width: auto !important;
+    height: auto !important;
+  }
+  #top-right {
+    display: flex;
+    flex-direction: column;
+    height: auto !important;
+  }
+  #about {
+    width: auto !important;
+  }
+  .links {
+    width: auto !important;
+    text-align: left;
+    justify-content: left;
+    display: none;
+  }
+  #trademark #links {
+    height: auto;
+    display: block;
+    padding-left: 0;
+  }
+  #trademark #links:hover {
+    filter: none;
+  }
 }
