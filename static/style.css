@@ -84,7 +84,6 @@ p {
   font-size: 6vw;
   font-family: "IBM Plex Sans";
   font-weight: 700;
-  text-decoration: underline;
   text-align: center;
 }
 
@@ -339,5 +338,60 @@ code .char {
   }
   #trademark #links:hover {
     filter: none;
+  }
+}
+
+#trademark:hover #title {
+  animation: flicker 2s ease-in-out;
+}
+
+@keyframes flicker {
+  0% {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    color: black;
+    text-shadow: black 1px 0 10px;
+  }
+  20% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    text-shadow: black 1px 0 10px;
+  }
+  30% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: transparent;
+    color: white;
+    text-shadow: black 0px 0 0px;
+  }
+  40% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    text-shadow: black 1px 0 5px;
+  }
+  60% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    text-shadow: black 1px 0 10px;
+  }
+  70% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    text-shadow: black 1px 0 20px;
+  }
+  90% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    color: white;
+    text-shadow: black 1px 0 10px;
+  }
+  100% {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: transparent;
+    color: transparent;
+    text-shadow: black 0px 0 0px;
   }
 }
