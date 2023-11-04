@@ -7,7 +7,7 @@ function debounce(func, timeout = 300){
 }
 
 function getSearchResults(query) {
-  fetch(`http://localhost:8000/search?term=${query}`)
+  fetch(`/search?term=${query}`)
     .then(res => res.text()
       .then(res => { document.querySelector("#search-results").innerHTML = res; })
       .catch(err => console.error(err)))
