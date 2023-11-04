@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jargon Devlog 1: Design and Inspiration</title>
+    <link rel="stylesheet" href="/blog/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;0,7..72,800;0,7..72,900;1,7..72,200;1,7..72,300;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700;1,7..72,800;1,7..72,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="light">
+    <header>
+      <a
+        href="javascript:void(0)"
+        onclick="toggleSidebar()"
+        id="toggle-sidebar"
+        class="material-symbols-outlined"
+        >menu</a
+      >
+      <div id="logo">
+        <a href="/">zifmann.tech</a><span><a href="/blog">blog</a></span>
+      </div>
+      <div id="theme-toggle">
+        <label class="switch">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onclick="toggleTheme()"
+          >
+            <path
+              d="M27.3174 20.6826L32 16L27.3174 11.3174V4.68258H20.6826L16 0L11.3174 4.68258H4.68258V11.3174L0 16L4.68258 20.6826V27.3174H11.3174L16 32L20.6826 27.3174H27.3174V20.6826ZM16 24.4881V7.51194C20.6826 7.51194 24.4881 11.3174 24.4881 16C24.4881 20.6826 20.6826 24.4881 16 24.4881Z"
+              fill="#1D2021"
+            />
+          </svg>
+        </label>
+      </div>
+    </header>
+    <div class="content">
+      <aside id="overview" class="hidden">
+        <h1>Blog Outline</h1>
+        <ul class="outline" id="outline"></ul>
+      </aside>
+      <div id="post-container">
+        <article id="post"><h1><a href="#jargon-devlog-1-design-and-inspiration" aria-hidden="true" class="anchor" id="section-jargon-devlog-1-design-and-inspiration"></a>Jargon Devlog 1: Design and Inspiration</h1>
+<time datetime=2023-11-04>Nov 04, 2023</time>
+<p><tag>jargon</tag> <tag>programming_languages</tag></p>
+<p>Every programmer has dreamed of designing their own programming language at some point. It is, after all, our life-bread, and we spend more time reading/writing code than doing any other activity in our adult lives. And even though we may love the tools we work with everyday, no programmer is without their usual gripes about their language of choice. Heck! some of us don't even get a choice. The more experience we gain with a particular language, the more flaws we start to discover in its operation and design. Sometimes, we just wish we could do things exactly our way. I mean, people do have a strange obsession with creating custom DSL's after all.</p>
+<h2><a href="#history" aria-hidden="true" class="anchor" id="section-history"></a>History</h2>
+<p>A while back (almost four years ago, to be precise), I had the bright idea of creating my own programming language. The idea wasn't to create a state of the art language that would revolutionise programming and software development as we know it, but rather as a gameplay element for a hacking related game I was designing back then (I use the term <em>designing</em> loosely here). In this game, you play as a hacker with the objective of infiltrating restricted areas to gain intel, sabotage systems and all that to carry forward a story set in a dystopian world where machines and big tech have taken over. You would collect scrap electronics from side quests, minigames, and by looting the buildings you infiltrated during your quests. You would then craft more complex machinery by connecting these various pieces together like legos (not exactly how electronics work but who cares about realism as long as its fun). So you could build a drone with a heat sensor and laser weapons while also having the ability to dispense hot dogs. Pretty awesome, i know. But the electronics themselves don't do much. They have some internal programming obviously, but they also provide software API's that you can use to program in more complex subroutines and introduce new behaviour. And I wanted to design my own language for that. And thus, <em><strong>Jargon</strong></em> was born. Although that is not what I called it back then. I can't recall what name I had given it prior to Jargon. Its not in the GDD, I looked.</p>
+<h2><a href="#design" aria-hidden="true" class="anchor" id="section-design"></a>Design</h2>
+<p>At first, I wanted Jargon to be very C-like. I also wanted to create an assembly version of it because that sounded cool. So you could have embedded assembly in Jargon code. It all sounds too complicated and even stupid now that I think about it. Especially as a gameplay element for a game that might have players that have no prior programming experience. But I wanted to keep the design intuitive (or whatever I thought that meant). I don't have any surviving design drafts of the first few iterations so those ideas are now long lost to time. It is also worth mentioning that during that time, I didn't have any experience with traditional functional languages so most of the earlier versions of Jargon's design were mostly inspired by C, C++, C# and python. It was a weird hybrid of C and python. But I always cared about types. Even then, when I was very stupid (not saying I'm much better now but I have grown, somewhat), I cared about types. Explicit types, always. No inference, mainly because I thought it was too much a bother to implement such features.</p>
+<h3><a href="#stumbling-in-the-dark" aria-hidden="true" class="anchor" id="section-stumbling-in-the-dark"></a>Stumbling in the dark</h3>
+<p>After a while of playing with the idea of the game, I got sidetracked as I usually do. I got more invested in other technologies and ideas and I kind of just forgot about it. Nearing the end of my first year in college, I rediscovered my lost desire of creating a programming language. I had no idea about formal language theory or compiler design. I was completely out of my wits. But I could figure it out. I always did, with stuff like that. Also, even without any formal training, I feel like we all develop a rough idea of how something like that might be implemented on a high level. I mean, it can't be all that different from human languages. So I looked at English and thought of ways to deconstruct it. Obviously you need a grammar if you're gonna have a language. But what would that even look like? What do you include in your grammar. Lets start with the most basic element: <strong>sentence structure</strong>.</p>
+<p>In English, the most basic sentence structure for affirmative sentences is:</p>
+<pre style="background-color:#2d2d2d;"><code><span style="color:#d3d0c8;">subject + verb + object
+</span></code></pre>
+<p>After you've written that down, you notice the individual parts: the <strong>tokens</strong>. Now, I did have some familiarity with parsing before because I had worked on things like a dynamic dialogue system and a basic command interpreter for games I had prototyped before. So I knew how to structure something like this. I then developed a very simple grammar in a completely non-standard grammar form that I conjured out of thin air, as I usually do.</p>
+<p>Once I had the grammar, I proceeded writing a lexer. I didn't actually know that that was the technical term for what I was writing. I tried to write a program that would take some string (code) and then create tokens from it. Pretty basic stuff. But I struggled with it because it was a lot more than just space or new lines separating the tokens from one another. Also, error reporting. I basically put everything in a loop and put a crap-ton of conditionals (which as I have now found out is pretty much how most actual lexers are written so it wasn't all that bad). Once, I had a <em>very</em> broken lexer, I got completely stuck in the parsing part as I had absolutely no idea of how to go about it. I tried for weeks to figure out how to do something like that. Oh and by the way, I was so full of pride at that time that I completely forbid myself from looking it up online. I was determined to figure it out myself. It was, obviously, very stupid. I would basically think about it all the time. I had a little notebook where I would doodle out different logic flows, none of which produced any successful leads. I would then give up for a couple of weeks, come back to it and cycle repeated. I decided to put it down and instead work on a simpler version. I had an internet friend who was also intrigued by the idea. He had written an NES emulator before and had some experience with the 6502. We decided to make our own assembler. This is also when I was first introduced to Rust. And I hated it at first. It seemed so very obtuse and unlike anything I had tried before. The syntax was a weird mashup of python and C++. It was appalling. He convinced me to start learning it because it was &quot;<em>stellar</em>&quot; (I can admit now that he was absolutely right) but I had a hard time picking it up. Hey, its not an easy language to learn. Also, I hated the borrow checker <em>so much</em>! After a while, I had a few modules written (memory, some CPU logic) but we both got distracted and there was trouble communicating so once again, Jargon was resigned into a dark corner, all alone, waiting to be picked up again.</p>
+<h2><a href="#inspiration" aria-hidden="true" class="anchor" id="section-inspiration"></a>Inspiration</h2>
+<p>I stopped learning Rust for a moment. In my third semester in college, we were introduced to 8085 assembly. I loved it. I hated the simulator we had to use though. So I did what I do best, try to reinvent the wheel. But this time, I was determined. 8085 assembly is simple. And so is the microcontroller itself. I figured it'd be quite simple to simulate. So I decided to write my own simulator. I thought of using C++ at first, as it was the most reliable and my go-to for anything that didn't absolutely require using some other language (c# for unity, for example). But, I had a change of heart. I'd started reading a bit about Rust. I heard people say great things about it. And I <em>loved</em> the pattern matching. So, I thought it was time to pick it up again. Besides, what better way to learn a language than to write a cool little project in it. And you know what? It was a surprisingly pleasant experience. Obviously, I only had to use only maybe 20% of all the features Rust had to offer but we all know the 80-20 rule. I had something functional in just a matter of weeks. I was proud of it too. And it boosted my confidence. I grew to love Rust's syntax. I was so amazed by it all that it became my primary inspiration for the syntax of Jargon. I love pattern matching, what can I say?</p>
+<p>So there was a drastic shift in Jargons syntax. It looked something like this:</p>
+<pre lang="rust" style="background-color:#2d2d2d;"><code><span style="color:#d3d0c8;">import &quot;</span><span style="color:#99cc99;">std/console</span><span style="color:#d3d0c8;">&quot;;
+</span><span style="color:#d3d0c8;">import &quot;</span><span style="color:#99cc99;">std/math</span><span style="color:#d3d0c8;">&quot;;
+</span><span style="color:#d3d0c8;">
+</span><span style="color:#cc99cc;">struct </span><span style="color:#d3d0c8;">Vector2: type = {
+</span><span style="color:#d3d0c8;">	field </span><span style="color:#f2777a;">x</span><span style="color:#d3d0c8;">: real;
+</span><span style="color:#d3d0c8;">	field y: real;
+</span><span style="color:#d3d0c8;">};
+</span><span style="color:#d3d0c8;">
+</span><span style="background-color:#f2777a;color:#2d2d2d;">proc</span><span style="color:#d3d0c8;"> Vector2::magnitude(): </span><span style="color:#66cccc;">real</span><span style="color:#d3d0c8;">() = math::sqrt(</span><span style="color:#f2777a;">self</span><span style="color:#d3d0c8;">::x ** </span><span style="color:#f99157;">2 </span><span style="color:#d3d0c8;">+ </span><span style="color:#f2777a;">self</span><span style="color:#d3d0c8;">::x ** </span><span style="color:#f99157;">2</span><span style="color:#d3d0c8;">);
+</span><span style="color:#d3d0c8;">
+</span><span style="background-color:#f2777a;color:#2d2d2d;">proc</span><span style="color:#d3d0c8;"> Vector2::normalized(): </span><span style="color:#66cccc;">real</span><span style="color:#d3d0c8;">() = {
+</span><span style="color:#d3d0c8;">	</span><span style="color:#f2777a;">self</span><span style="color:#d3d0c8;">::x /= </span><span style="color:#f2777a;">self</span><span style="color:#d3d0c8;">::magnitude();
+</span><span style="color:#d3d0c8;">	</span><span style="color:#f2777a;">self</span><span style="color:#d3d0c8;">::y /= </span><span style="color:#f2777a;">self</span><span style="color:#d3d0c8;">::magnitude();
+</span><span style="color:#d3d0c8;">};
+</span><span style="color:#d3d0c8;">
+</span><span style="background-color:#f2777a;color:#2d2d2d;">proc</span><span style="color:#d3d0c8;"> </span><span style="color:#66cccc;">main</span><span style="color:#d3d0c8;">(param args: string[_]): </span><span style="color:#66cccc;">int</span><span style="color:#d3d0c8;">() =  {
+</span><span style="color:#d3d0c8;">	var position: Vector2 = { </span><span style="color:#f99157;">10.5</span><span style="color:#d3d0c8;">, </span><span style="color:#f99157;">43.2 </span><span style="color:#d3d0c8;">};
+</span><span style="color:#d3d0c8;">	console::print(position::magnitude());
+</span><span style="color:#d3d0c8;">	console::print(position::normalized());
+</span><span style="color:#d3d0c8;">	</span><span style="color:#cc99cc;">return </span><span style="color:#f99157;">0</span><span style="color:#d3d0c8;">;
+</span><span style="color:#d3d0c8;">};
+</span></code></pre>
+<p>It was still very easy to understand in my opinion and it was still very close to the C-style languages most people are familiar with. Although, there was a bit too many colons for my liking. I worked on the syntax a bit more and after a while, decided it was good enough to start writing a parser for.</p>
+<p>I had learned my lesson from my past experience though and this time, I decided not to keep banging my head against the wall and instead look for help and what better place to that than the interwebs. I discovered a lot of resources, starting with the <em>motherbook</em> <strong>Principles of Compiler Design</strong> by Alfred Aho and Jeffrey Ullman. And boy was this book intimidating. I mean, just the cover alone is enough to scare newbs such as myself away. Also, did I mention I was not a big fan of reading at that time? The knight holding a sword upto the fuming dragon subconsciously indicated to me that this is not where I want to start. I wanted to take a bit more casual approach with this one. So I found this neat website called <a href="https://craftinginterpreters.com">crafting interpreters</a> and it was awesome! I never went through all of it because as I said before, I am not a huge fan of reading. So I looked at the first few chapters, familiarised myself with the terminology and took inspiration from it. After all, I was only looking for a nudge in the right direction and this book did that. Oh and by the way, Robert Nystrom's other book that I read and took inspiration from for the design of my blog <a href="https://gameprogrammingpatterns.com">game programming patterns</a> is also equally as fantastic. He writes top tier stuff. Anyways, this is where I first learnt about recursive descent parsing and after getting a rough idea of it, went to look for more info from other sources (I like to gather info about something from multiple sources cause I think its helpful to look at and take inspiration from different implementations of the same concept, and it can also help clear some things up). I made a very basic parser and I was proud of it. But I got sidetracked once again and dropped the idea for a while.</p>
+<h2><a href="#intro-to-compiler-design" aria-hidden="true" class="anchor" id="section-intro-to-compiler-design"></a>Intro to Compiler Design</h2>
+<p>We were also starting to get introduced to the topic of compiler design in college. It was mostly focused on LR parsers which I didn't find very intuitive. It seemed a bit more obtuse and math-y than recursive descent parsers. It is faster and more efficient but kind of hard to put together from my understanding. Atleast the theoretical side made it seem so. I mean, on paper, you had to make this huge parsing table with the acceptable characters and then the next state the statemachine would transition to for that input and all that jibber jabber. It seemed like a bit of a black box. On the other hand, you are more explicit in terms of showing your intent when writing recursive descent parsers. And recursive descent parsers a lot easier to write and follow even in just your head for maybe when you're debugging or such. That might also be the reason why even though LR parsers are a lot faster, most compilers use recursive descent parsing or some hybrid form (I don't know much about other compilers, I only have surface level knowledge of them, sorry to disappoint). I learned a bit about parsing from that class although it wasn't very helpful cause it was mostly or should I say, entirely theoretical. It was still a little helpful and it helped me stay focused, somewhat.</p>
+<h3><a href="#first-interpreter" aria-hidden="true" class="anchor" id="section-first-interpreter"></a>First interpreter</h3>
+<p>Around this time, I started freelancing and one of my clients wanted me to write a prolog interpreter for them. They were a student themselves and it was part of their syllabus and apparently, they had no prior programming experience so couldn't make heads nor tails of it. Lets get too hung up on the ethical aspect of it all and in my defence, I was a broke college kid and needed all the money I could get at the time. Besides, it was a very intriguing idea too. I couldn't turn it down. So I wrote a parser, implemented some of the standard prolog features like substitutions and whatever they're called. This was the first time I wrote an actual recursive descent parser for a real language. But then again, prolog is nothing like mainstream programming languages and this was like a more toned down version of standard prolog (languages like prolog and LISP have different variants with their own unique features). I even had to implement concurrent evaluation which was a lot of fun. And by the end of it, there I was; I had written a real parser, for a real programming language (although not a very general purpose language, I should add). That sure was a confidence boost. I might go over this very topic in a separate blog post. I think its kind of interesting-ish, right?</p>
+<p>During this time, I was acquainting myself with world of programming language design and I found a lot of great inspirations such as Rasmus Andersson's <a href="https://github.com/rsms/rsm">rsm</a> which is more than a language but an entire computer (or a smol, limited version of one, atleast) simulated on your actual computer. The language design is actually very close to what I was aiming for in the first few iterations with the embedded assembly and all. I also discovered Thorsten Ball's <a href="https://interpreterbook.com/">book</a> which also teaches you how to write an interpreter.</p>
+<h2><a href="#current-state-of-jargon--future-plans" aria-hidden="true" class="anchor" id="section-current-state-of-jargon--future-plans"></a>Current state of Jargon &amp; future plans</h2>
+<p>Enough talk about compilers, lets go back to fantasizing for a bit, shall we? What does the current syntax of Jargon look like? (syntax is very important to me because lets not forget, it is after all, supposed to be a major video game mechanic).</p>
+<p>I wanted Jargon's syntax to be consistent across the board. So every statement follows roughly the same structure:</p>
+<pre lang="c" style="background-color:#2d2d2d;"><code><span style="color:#d3d0c8;">expression := [decl &quot;</span><span style="color:#99cc99;">=</span><span style="color:#d3d0c8;">&quot; ] expression | function_call | literal &quot;</span><span style="color:#99cc99;">;</span><span style="color:#d3d0c8;">&quot;
+</span></code></pre>
+<p>Everything is a statement. And everything from defining new types, functions, variables, etc, everything follows this syntax.</p>
+<p>For example, look at this snippet:</p>
+<pre lang="jargon" style="background-color:#2d2d2d;"><code><span style="color:#d3d0c8;">let io: mod = import &quot;std/io&quot;;
+</span><span style="color:#d3d0c8;">
+</span><span style="color:#d3d0c8;">type Config: { bool, bool } = { recursive, fast }; // this, I&#39;m not so sure about
+</span><span style="color:#d3d0c8;">
+</span><span style="color:#d3d0c8;">fn Config::default: () -&gt; Config = { false, false };
+</span><span style="color:#d3d0c8;">
+</span><span style="color:#d3d0c8;">proc process_number: (int) = (x) {
+</span><span style="color:#d3d0c8;">    let y = match x on { (0, 2), (1, 3), (2, 6), (3, 7) } else 0;
+</span><span style="color:#d3d0c8;">    var flag = 0;
+</span><span style="color:#d3d0c8;">    () { 
+</span><span style="color:#d3d0c8;">        io::print(&quot;y = ${y}&quot;) 
+</span><span style="color:#d3d0c8;">        let luck = rand::random(0..20);
+</span><span style="color:#d3d0c8;">        flag = if luck &gt; 13 then false else true;
+</span><span style="color:#d3d0c8;">    }
+</span><span style="color:#d3d0c8;">    while flag == true;
+</span><span style="color:#d3d0c8;">}
+</span></code></pre>
+<p>If you look closely, you'll realise that every line follows the same structure as defined by the grammar stated above. I understand the syntax looks a bit <em>ugly</em> at the moment, but that can be ironed out. Its a very tentative process and requires a lot of experimentation. But consistency is a very important aspect of Jargons design. Reading just a single line of Jargon code should familiarise you with the rest of the syntax, atleast in terms of structure. Keywords, on the other hand, are a completely different topic. I've also incorporated Rust's error handling mechanism in Jargon's design. Procedures and Functions (there is a difference) can either be fallible or infallible. They are infallible by default, and must be marked otherwise. Infallible functions have the <code>error</code> context variable, assigning to which returns from the function at that point with an error value. Oh, and I should mention, returning does not use keywords. There is no concept of command-like keywords in Jargon. So things like break, return, goto, etc do not exist. You can return from a function by assigning to the <code>result</code> variable. And don't worry, the compiler should do exhaustive branch validation making sure every path returns either some value or error (in case of fallible functions). The primary reason behind this design decision is once again, syntax consistency. Something like <code>break;</code> or <code>return x;</code> just doesn't fit with the rest of the syntax.</p>
+<h3><a href="#future-plans" aria-hidden="true" class="anchor" id="section-future-plans"></a>Future Plans</h3>
+<p>I would like to incorporate some pattern matching capabilities similar to Rust, which would be incomplete without sum types. Therefore, sum types and pattern matching are high priority <code>nice-to-have</code>s. I also recently came across a proposal for another new programming language called <a href="https://austral-lang.org">Austral</a>. The most intriguing feature they propose in the specification is that of <em><strong>Linear Types</strong></em> <span class="term"><b>Linear Types</b> corresponds to linear logic and ensures that objects are used exactly once. This allows the system to safely deallocate an object after its use, or to design software interfaces that guarantee a resource cannot be used once it has been closed or transitioned to a different state.</span> which is similar to but not the same as Rust's <em><strong>borrow checker</strong></em>. So either one of this mechanisms is intriguing to implement. The borrow checker applies globally which might be a bit annoying for beginners but I really like the idea of Linear types that are limited to only specific resource types like files, database handles, etc. I'll have to think more about it though. Because I'm not entirely sure if this is a good idea for a beginner friendly language. Especially one that isn't even supposed to be general-purpose and is essentially, a <em>toy language</em>. But I got very intrigued by the idea when I first read about it so I couldn't help but indulge.</p>
+<p>I might even do a complete 180 on the design and resort to a far simpler syntax, much closer to C. C is brilliant! The simplicity and capability of that language never ceases to amaze me. Sometimes I wonder if all of these abstractions are even worth it, or even necessary for that matter.</p>
+</article>
+      </div>
+      <script src="/blog/script.js"></script>
+    </div>
+  </body>
+</html>

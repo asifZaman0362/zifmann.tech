@@ -89,8 +89,8 @@ function create_outline() {
 }
 
 window.onload = () => {
-  create_outline()
   var theme = localStorage.getItem("theme") ?? "light";
   document.body.className = theme;
   document.querySelector("#theme-toggle").setAttribute("checked", theme == "dark");
+  create_outline()
 }

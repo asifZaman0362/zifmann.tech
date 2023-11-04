@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating a static blog site with Obsidian, and some Markdown parsing</title>
+    <link rel="stylesheet" href="/blog/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Literata:ital,opsz,wght@0,7..72,200;0,7..72,300;0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;0,7..72,800;0,7..72,900;1,7..72,200;1,7..72,300;1,7..72,400;1,7..72,500;1,7..72,600;1,7..72,700;1,7..72,800;1,7..72,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="light">
+    <header>
+      <a
+        href="javascript:void(0)"
+        onclick="toggleSidebar()"
+        id="toggle-sidebar"
+        class="material-symbols-outlined"
+        >menu</a
+      >
+      <div id="logo">
+        <a href="/">zifmann.tech</a><span><a href="/blog">blog</a></span>
+      </div>
+      <div id="theme-toggle">
+        <label class="switch">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            onclick="toggleTheme()"
+          >
+            <path
+              d="M27.3174 20.6826L32 16L27.3174 11.3174V4.68258H20.6826L16 0L11.3174 4.68258H4.68258V11.3174L0 16L4.68258 20.6826V27.3174H11.3174L16 32L20.6826 27.3174H27.3174V20.6826ZM16 24.4881V7.51194C20.6826 7.51194 24.4881 11.3174 24.4881 16C24.4881 20.6826 20.6826 24.4881 16 24.4881Z"
+              fill="#1D2021"
+            />
+          </svg>
+        </label>
+      </div>
+    </header>
+    <div class="content">
+      <aside id="overview" class="hidden">
+        <h1>Blog Outline</h1>
+        <ul class="outline" id="outline"></ul>
+      </aside>
+      <div id="post-container">
+        <article id="post"><h1><a href="#creating-a-static-blog-site-with-obsidian-and-some-markdown-parsing" aria-hidden="true" class="anchor" id="section-creating-a-static-blog-site-with-obsidian-and-some-markdown-parsing"></a>Creating a static blog site with Obsidian, and some Markdown parsing</h1>
+<time datetime=2023-11-04>Nov 04, 2023</time>
+<p><tag>blog</tag> <tag>web</tag></p>
+<p>I've always wanted a blog of my own. I like writing about things, sometimes. It can be very therapeutic, in my opinion. I've made blogs for other people using CMS platforms like Wordpress and... well just Wordpress. That was a long time ago. And even then, I wasn't a huge fan of Wordpress. Not that I understood any of its inner workings then, and who am I kidding, I still don't. It seemed a bit much. I remember the first time I heard about static site generators from <a href="https://lunduke.locals.com">Bryan Lunduke</a> and it always stuck with me. The idea of being able to write your posts anywhere, so long as you had some kind of text editor, and then with a single command, updating your site to include this new post was fascinating. No fiddling with messy databases, no need for php or other server code. Just a plain old filetree that can be served by apache2, nginx, <code>python -m http.server</code>, or whatever else you might fancy.</p>
+<h2><a href="#writing-posts" aria-hidden="true" class="anchor" id="section-writing-posts"></a>Writing posts</h2>
+<p>I've recently been getting into Obsidian and so far, its made a pretty good impression on me. I use it for note-taking, whiteboarding (with the excalidraw plugin), and drafting terrible novel synopses (<em>can't blame a guy for trying</em>). I like Markdown. Its simple, and plain-text and very, very easy to comprehend, even by people who've never seen it before. It's very natural in its way of representing document structure and shall we say, markup. The three dashes for horizontal lines, the way tables are defined, task lists, you name it. Even in its plain text format without any parsing into a dom tree or whatever they're called, its completely understable, unlike HTML or something else (<em>XML? or are they the same thing? probably</em>). <span class="term">If anyone's actually using XML for anything at all, then I feel genuinely sorry for them.</span></p>
+<h3><a href="#obsidian-and-markdown" aria-hidden="true" class="anchor" id="section-obsidian-and-markdown"></a>Obsidian and Markdown</h3>
+<p>Obsidian has a very capable markdown editor with a very simple and clean interface which is exactly what I was going for. The editor isn't its main selling point, there's the whole mind-map, knowledge base, internal linking of documents and nodes, and a fancy pants graph view thingamajig. And its actually pretty cool but we're not here to talk about that. We're only gonna be using it for writing our posts down. We could use some of the many export-to-HTML plugins I found on the marketplace but none of them suit my needs and I had to do some post-processing either way, so I thought <em>why not just do it all in a single program?</em></p>
+<h4><a href="#parsing-markdown" aria-hidden="true" class="anchor" id="section-parsing-markdown"></a>Parsing markdown</h4>
+<p>There are many good markdown parsing libraries for most mainstream languages but I decided to use the <a href="https://crates.io/comrak">comrak</a> crate with Rust, because of two reasons:</p>
+<ol>
+<li>Rust is the best programming language ever (endorsed by god himself), and</li>
+<li>I don't want to worry about maintaing this thing once I'm done writing it and since Rust promises excellent backwards compatibility, I can still use this ten years from now if I wanted to.</li></ol>
+  Comrak actually has a lot of features, including an option to work with syntax highlighting plugins (including custom ones you can write yourself by implementing an adapter for it). I won't get into the syntax highlighter yet because I already wrote one a couple of days back to do it client-side using javascript because I wasn't aware of the whole adapter thing and now I don't want to write a new one all over again. The Javascript one is, well... written in Javascript and that obviously bothers me greatly so I might give in and write a comrak adapter instead but that will come later when I finish writing my lexer for <em><strong>Jargon</strong></em> (a toy programming language I've been workshopping). Maybe I could even use that with comrak with a couple of tweaks. Anywho, moving on to more immediate matters, creating html from markdown. So, I wrote a simple Rust program that takes in an input filepath and an output path, parses the markdown, performs some necessary text substitutions, and then writes out the html to a new file under the output directory. Pretty darn simple!</p>
+<p>This works, but only if we want a boring website with no links from one blog to another, no homepage with an overview of recent posts, and with no archive list to browse all of the available posts. Also, we need a rudimentary searching feature, which unfortunately does need some backend code to implement because we don't want to do it on the client side. I could, but I chose not to. And besides, that is only a secondary feature, a <em>nice to have</em> instead of being an absolute necessity (depending on how you look at it) and our blog is still 100% usable without it.</p>
+<p>We wont get into the backend code related to the searching now and are instead going to thing about solving the linking problem.</p>
+<h2><a href="#design" aria-hidden="true" class="anchor" id="section-design"></a>Design</h2>
+<p>Lets talk a little bit about the layout and style of the blog. I did quite a bit of work to make it look decent and most-importantly, comfortable and easy to use, which is surprisingly not very common in most websites today. From my experience, everyone sacrifices accessibility and colors that are easy on the eyes for more dramatic and <em>&quot;fantastic&quot;</em> looking layouts and colorschemes. I understand there is a market for very obtuse design and innovation but sometimes, its a bit too much. Or maybe I just have very bland taste.</p>
+<h3><a href="#homepage" aria-hidden="true" class="anchor" id="section-homepage"></a>Homepage</h3>
+<p>The web wouldn't be much of a web without the extensive interconnection between documents and resources. A website without hyperlinks is just a filesystem. And a pretty shitty one at that too. Atleast, a filesystem has some sort of indexing to help with navigation. Oh, and I'm sorry for dropping the s-bomb out of nowhere but this is going to be a very common theme in my blog posts (could get even worse) so if you'd rather your reading material be less <em>&quot;vulgar&quot;</em> (such a dramatic word), I'm sorry to see you leave. Alright, with that out of the way, we need some kind of indexing, a <em><strong>featured</strong></em> section to show recent posts and a timeline view of every post every published, displayed in a nice chronologically sorted collapsable list categorised by year, and then month. I had the design for the homepage prepared a long time ago when I first conceived the idea of this site. I always wanted to add one of those fancy tree views for my timeline so  I borrowed some CSS from <a href="https://iamkate.com/code/tree-views/">Kate Morley</a> (thanks Kate!) to create that look using <code>&lt;details&gt;</code> blocks inside nested unordered lists. I had actually made an abhorrent attempt at doing this myself a while back but the css was so poorly written with hardcoded values everywhere, I figured it'd take me a lot more time to fix that than to just get something better written online. The one I wrote looked pretty similar and I actually do like the way it flows a bit better but I write a lot of scrap html, css for experimentation and I don't put them in some git repo and I reset my laptop a few months ago so the only remnant of it that still exists is this screenshot I sent of it to a friend on Discord:</p>
+<img alt="screenshot of a tree-style nested list view" src="https://i.imgur.com/0FZ1R3r.png"/>
+<p><em>I was so proud of it too</em></p>
+<p>I'm sorry for boring you with unnecessary details. No one wants to talk about CSS. Certainly not me. Producing the ul block from the static site generator was just a matter of recursively walking the <code>outdir</code> directory, going down every subdirectory until we encounter a file, then opening and reading the <code>&lt;h1&gt;</code> tag which contains the title of the post, and then creating a new <code>a</code> tag wrapped around an <code>li</code> tag and with the <code>href</code> set to the filepath. I didn't use the filename for the <code>innerHTML</code> text of the anchor tag because the filenames look like <code>blog_post_name_yada_yada.html</code> which is obviously not what we want to show to our readers. This is just a very basic tree traversal function that reads files and appends some of its contents to a html string. We do this everytime we add a new file because we dont use a database and we have no way of keeping track of stuff like post deletions and stuff like that. So we just rebuild the whole site everytime which takes a very short period of time to do anyways so we don't even care.</p>
+<p>In a similar fashion, we read the excerpts from the recent files using a similar directory walking function and extract from it the heading, tags and the first paragraph and put it inside an article wrapped around an anchor tag with the correct <code>href</code>.</p>
+<p>So, we bring it all together by reading a skeleton HTML file that contains the necessary boilerplate and basic elements like the header, searchbar, etc and just put our newly created elements inside the <code>&lt;div id=&quot;container&quot;&gt;</code>. <em>Et voila!</em> We have ourselves a homepage.</p>
+<h3><a href="#blog-posts" aria-hidden="true" class="anchor" id="section-blog-posts"></a>Blog posts</h3>
+<p>The blog posts also have a skeleton HTML file that the site generator reads and then stitches together with the HTML generated by the markdown parser inside an <code>&lt;article&gt;</code> tag in the body. Along with the actual text of the blog post, I also wanted to add a bit of extra <em>flair</em> to my articles. So I added an outline of the article on the left hand side as a tree view of the different topics and subtopics. And on the right hand side, I added a gutter-like view that contains floating text boxes containing memos, notes and definitions of some of the terms appearing in the blog post. I borrowed this idea from the brilliantly designed <a href="https://gameprogrammingpatterns.com/contents">game programming patterns</a> book website. It's such a simple, clean and elegant design. And its a very well-written and informative book too. I would definitely recommend reading it to anyone who is interested in learning some of the most commonly used programming patterns, you don't even have to be interested in making games.</p>
+<h4><a href="#outline-view" aria-hidden="true" class="anchor" id="section-outline-view"></a>Outline view</h4>
+<p>The outline view was pretty simple to create. As of right now, I am using client side javascript to generate it once the page has loaded which is not desirable but I am working on moving that over to the static site generator's code itself. The way I'm generating it right now relies on information related to the HTML elements such as ids and classes which are not trivial to retrieve without an HTML parser or some DOM level API which is why I have to rely on javascript to use the browser's DOM API instead. I have come across a rust HTML parser called <a href="https://docs.rs/html5ever">html5ever</a> but I haven't tried using it yet. In fact, by the time you're reading this, I may already have updated the code to make use of this crate instead, who knows?</p>
+<p>Anyways, <em><strong>comrak</strong></em> has an option to generate ids for headings to help with linking specific parts of an article more easily (using the <code>proto://page_url#section</code> format). It does, however, have a strange way of generating these IDs. What it does is, besides adding the id to a heading, it also puts a hidden anchor tag inside the heading tag (<code>h1</code>, <code>h2</code>, <code>h3</code>, ...) which has an href to its own parent (the heading element it's put inside). I don't know why comrak does this but I just found it very strange. I figured it doesn't break the site in any way so I never bothered with removing those. Besides, it could also be for some accessibility reason, idk 🤷‍♂️. So I find all heading elements inside the <code>article</code> with <code>id=&quot;post&quot;</code> and recursively create a tree from them with each node containing the <code>innerHTML</code> with the <code>&lt;a&gt;...&lt;a/&gt;</code> left out using a simple regular expression; and the id to create links to. Once I have the tree, I traverse it and create a <code>&lt;ul&gt;</code> matching its order and layout and put the heading text and links in the contained list items. This process is very similar to the process used to generate the tree for the timeline view that appears on the homepage.</p>
+<h4><a href="#gutter-view" aria-hidden="true" class="anchor" id="section-gutter-view"></a>Gutter view</h4>
+<p>The gutter view on the right is just a fixed div that spans the entire height of its parent. It contains nothing, and just serves as a background. The actual floating text boxes are a part of the article itself because I need them to appear at the correct vertical position as intended. If a new term appears on some line, its definition should also appear on the right side on the same level. So they are just absolute positioned divs with <code>right: 0</code> set in the style rules. I did run into some issues with the scrolling and overflow but I managed to fix it by re-ordering the elements in the markup.</p>
+<h4><a href="#syntax-highlighting" aria-hidden="true" class="anchor" id="section-syntax-highlighting"></a>Syntax highlighting</h4>
+<p>Since this is a software oriented tech blog (I do talk about other things but its mostly about software), I'm going to be adding a lot of code in these blog posts. And it would be absolutely blasphemous of me to not add syntax highlighting because code without vibrantly colored words is just boring text that no-one wants to look at or even understands, for that matter. <em><strong>comrak</strong></em> has syntax highlighting support. You can either use the <strong>syntect</strong> plugin or create your own syntax highlighter adapter. I didn't really think it was worth making my own since syntect has support for a huge array of languages, and the default theme works well with my design so I decided to use it over writing my own. However, I am griped by the fact that the syntect plugin hard codes the color styles into the tokens instead of using variables or classes which makes it very difficult (read impossible) to change the colors to adapt to dark/light mode switch. After experimenting with some css filters, I landed on the following filter to make the code more readable and somewhat pleasant looking in lightmode:</p>
+<pre lang="css" style="background-color:#2d2d2d;"><code><span style="color:#6699cc;">.</span><span style="color:#f99157;">light </span><span style="color:#f2777a;">pre </span><span style="color:#d3d0c8;">{
+</span><span style="color:#d3d0c8;">	filter: </span><span style="color:#66cccc;">invert</span><span style="color:#d3d0c8;">(</span><span style="color:#f99157;">1</span><span style="color:#d3d0c8;">) </span><span style="color:#66cccc;">hue-rotate</span><span style="color:#d3d0c8;">(</span><span style="color:#f99157;">140deg</span><span style="color:#d3d0c8;">) </span><span style="color:#66cccc;">saturate</span><span style="color:#d3d0c8;">(</span><span style="color:#f99157;">1.5</span><span style="color:#d3d0c8;">);
+</span><span style="color:#d3d0c8;">}
+</span></code></pre>
+<p>You can probably see it in action while reading the code snippet above, if you're one of those light-mode weirdos (no hate though). The default theme in darkmode is  <code>base16-ocean.dark</code> which looks really nice, imo. I like the contrast, not too much, not too little and its really easy on the eyes. I do however, really, really love gruvbox and I read about <a href="https://docs.rs/comrak/latest/comrak/plugins/syntect/struct.SyntectAdapterBuilder.html#method.theme_set">ThemeSet</a> in the docs which I might experiment with later on. For now, I'm happy with how it looks.</p>
+<h2><a href="#conclusion" aria-hidden="true" class="anchor" id="section-conclusion"></a>Conclusion</h2>
+<p>Making a static site generator is pretty easy and totally worth it. I finished writing this thing in a couple of days and most of the time was actually spent on the design part. Now, I can just write my blog posts in Obsidian, hop onto a terminal and execute one command to regenerate the website with the new blog post added and links updated. And its pretty fast too. Nothing beats a static site in terms of speed tbh. And I have it all integrated with git and with CI/CD set up properly, it should automatically push the updated sources to my hosting provider as well. Here's a link to the GitHub <a href="https://github.com/asifZaman0362/static_site_generator">repo</a> in case you're interested.</p>
+</article>
+      </div>
+      <script src="/blog/script.js"></script>
+    </div>
+  </body>
+</html>
